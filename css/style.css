@@ -55,19 +55,22 @@ html {
 }
 
 .intro {
-    margin-top: 6rem;
+    flex-direction: column;
+    display: flex;
+    height:80%;
+    align-items: center;
+    justify-content: center;
 }
 
 svg {
     height: 32px;
-    margin: 0 2em;
+    margin: 0 1em;
     fill: var(--color-dark);
 }
 
 .contacts {
-    padding: 1rem;
     padding-top: 3rem;
-    justify-content: center;
+    justify-content: space-between;
     display: flex;
 }
 
