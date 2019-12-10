@@ -1,0 +1,84 @@
+:root {
+    --font-default: "PT Serif", Georgia, "Times New Roman", serif;
+    --font-secondary: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    --body-bg: #fafafa;
+    --font-letterspacing: 0.02em;
+    --font-size-small: 78%;
+    --color-mid: #8890A0;
+    --color-dark: #3d4356;
+}
+
+
+
+body {background-color: #fcfaf7;}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 18px;
+    font-family: var(--font-secondary);
+    line-height: 1.5;
+    max-width: 40rem;
+    margin: 0 auto;
+    padding: 1rem;
+    -webkit-font-smoothing:antialiased
+}
+
+.logo-box {
+    font-family: var(--font-secondary);
+    width: 20px;
+    height: 25px;
+    padding-top: 4px;
+    padding-bottom: 2px;
+    color: #fcfaf7;
+    background: var(--color-dark);
+}
+
+.logo-box > div {
+    font-size: 9px;
+    font-weight: 600;
+    margin: 0;
+    text-align: center;
+    line-height: 1.4;
+    text-transform: uppercase;
+}
+
+.header {
+    display: flex;
+}
+
+.header.title  {
+    font-size: 1rem;
+    margin: 1;
+    hyphens: none;
+    font-family: var(--font-secondary);
+    padding-left: 0.5rem;
+}
+
+.intro {
+    margin-top: 6rem;
+}
+
+svg {
+    height: 32px;
+    margin: 0 2em;
+    fill: var(--color-dark);
+}
+
+.contacts {
+    padding: 1rem;
+    padding-top: 3rem;
+    justify-content: center;
+    display: flex;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding-bottom: 1rem;
+    text-align: center;
+    font-family: var(--font-secondary);
+    font-size: var(--font-size-small);
+    letter-spacing: var(--font-letterspacing);
+}
