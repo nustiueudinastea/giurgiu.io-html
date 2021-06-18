@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Verb - Speaker demo</title>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webrtc-adapter/6.4.0/adapter.min.js" ></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" ></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.70/jquery.blockUI.min.js" ></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.2/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.1.0/bootbox.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.3/toastr.min.js"></script>
+<script type="text/javascript" src="janus.js" ></script>
+<script type="text/javascript" src="speaker.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/lumen/bootstrap.min.css" type="text/css"/>
+<link rel="stylesheet" href="css/demo.css" type="text/css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css" type="text/css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.3/toastr.css"/>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-static-top">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="#">Verb</a>
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+	</div>
+	<div class="navbar-collapse collapse">
+		<ul class="nav navbar-nav">
+			<li class="active"><a href="#">Speaker</a></li>
+			<li><a href="attendee.html">Attendee</a></li>
+		</ul>
+		<div class="navbar-header navbar-right">
+			<ul class="nav navbar-nav">
+				<li><a target="_blank" href="https://janus.conf.meetecho.com">Janus</a></li>
+				<li><a target="_blank" href="http://www.meetecho.com">Meetecho</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+</nav>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="page-header">
+				<h1>Verb Speaker demo
+					<button class="btn btn-default" autocomplete="off" id="start">Start</button>
+				</h1>
+			</div>
+			<div class="container" id="details">
+				<div class="row">
+					<div class="col-md-12">
+						<h3>Demo details</h3>
+						<p>This demo shows how a speaker can use the VideoRoom to publish
+						video, the AudioBridge to publish audio, and have both streams
+						forwarded to a Streaming mountpoint for a wider and more scalable
+						distribution of the broadcast. A simple way to switch from webcam
+						video (default) to screensharing and viceversa is provided as well,
+						using the <code>replaceTrack()</code> API to avoid renegotiations. To
+						check the demo page for attendees, click <a href="attendee.html">here</a> instead.</p>
+						<div class="well">
+						<p>Notice that, while for the sake of simplicity this demo takes
+						care of creating the related resources (mountpoints, rooms, forwarders)
+						in the page itself, this is NOT recommended for security reasons,
+						in particular to prevent abuses on the platform: it's advised to
+						implement these features as an authenticated service on the
+						server side instead, e.g., using the plugin synchronous messaging the
+						Admin API makes available, so that they're only performed when an
+						authorized user asks for them.</p>
+						<p>Besides, we're only forwarding to a single mountpoint on the same
+						Janus server as the VideoRoom and AudioBridge: for more scalable
+						scenarios, and to serve a wider audience, you'll probably want to
+						send the same media streams to multiple Janus instances at the
+						same time (via unicast or multicast).</p>
+						<p>Finally, this demo doesn't involve any moderation: it allows
+						attendees to just chime in an make questions when they click
+						on the hand icon in their UI. In the future, you may want to
+						add some moderation mechanism, e.g., ask the speaker for
+						permission before an attendee is granted speaking rights.</p>
+						</div>
+						<p>Press the <code>Start</code> button above to launch the demo.</p>
+					</div>
+				</div>
+			</div>
+			<div id="video" class="hide">
+				<div class="col-md-12">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">Local Video
+								<span class="label label-primary hide" id="publisher"></span>
+								<span class="pull-right hide">
+									<button type="btn btn-default" title="Share your screen" id="share"><i class="fa fa-television"></i></button>
+								</span>
+							</h3>
+						</div>
+						<div class="panel-body" id="videolocal"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<hr>
+	<div class="footer">
+		<p>Janus WebRTC Server &copy; <a href="http://www.meetecho.com">Meetecho</a> 2014-2020</p>
+	</div>
+</div>
+
+</body>
+</html>

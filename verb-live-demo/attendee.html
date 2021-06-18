@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Verb - Attendee demo</title>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webrtc-adapter/6.4.0/adapter.min.js" ></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" ></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.70/jquery.blockUI.min.js" ></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.2/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.1.0/bootbox.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.3/toastr.min.js"></script>
+<script type="text/javascript" src="janus.js" ></script>
+<script type="text/javascript" src="attendee.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/lumen/bootstrap.min.css" type="text/css"/>
+<link rel="stylesheet" href="css/demo.css" type="text/css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css" type="text/css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.3/toastr.css"/>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-static-top">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="#">Verb</a>
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+	</div>
+	<div class="navbar-collapse collapse">
+		<ul class="nav navbar-nav">
+			<li><a href="speaker.html">Speaker</a></li>
+			<li class="active"><a href="#">Attendee</a></li>
+		</ul>
+		<div class="navbar-header navbar-right">
+			<ul class="nav navbar-nav">
+				<li><a target="_blank" href="https://janus.conf.meetecho.com">Janus</a></li>
+				<li><a target="_blank" href="http://www.meetecho.com">Meetecho</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+</nav>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="page-header">
+				<h1>Verb Attendee demo
+					<button class="btn btn-default" autocomplete="off" id="start">Start</button>
+				</h1>
+			</div>
+			<div class="container" id="details">
+				<div class="row">
+					<div class="col-md-12">
+						<h3>Demo details</h3>
+						<p>This demo shows how an attendee can participate in a speaker's
+						broadcast, all while trying to keep resources usage low. Specifically,
+						the attendee will receive the broadcast via a Streaming plugin mountpoint
+						(that the <a href="speaker.html">speaker</a> forwards their media to).
+						Using a Streaming plugin mountpoint makes it easy to scale the broadcast,
+						as the same mountpoint could be configured on different Janus instances.</p>
+						<p>Whenever the participant wants to make a question, they can click the
+						hand icon (<i class="fa fa-hand-paper-o"></i>), which will do two things:</p>
+						<ol>
+							<li>connect to the AudioBridge as an active participant;</li>
+							<li>mute the audio of the incoming Streaming mountpoint.</li>
+						</ol>
+						<p>Connecting to the AudioBridge will ensure they'll be able to talk to the
+						speaker, and since the AudioBridge mix is forwarded to the Streaming mountpoint
+						itself, all other attendees will hear the question too (which is why the attendee
+						making the question should mute the Streaming mountpoint, or they'll hear their
+						own voice back). Notice that, for the sake of simplicity, we're assuming that
+						the AudioBridge hosting the speaker and the Streaming mountpoint serving the
+						attendee are on the same server: in a more scalable scenario (where multiple
+						Streaming mountpoints may be distributing the same broadcast) this assumption
+						may be incorrect.</p>
+						<div class="well">Notice that, in this simple demo, no moderation is used,
+						so clicking the hand icon immediately grants the attendee access to the
+						room, and speaking rights in the broadcast. In order to avoid disruptions
+						or abuses, it's recommended to add a moderation aspect in production.</div>
+						<p>Press the <code>Start</code> button above to launch the demo.</p>
+					</div>
+				</div>
+			</div>
+			<div id="video" class="hide">
+				<div class="col-md-12">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">Remote Video
+								<span class="label label-primary hide" id="publisher"></span>
+								<span class="pull-right hide">
+									<button type="btn btn-default" title="Make a question" id="speak"><i class="fa fa-hand-paper-o"></i></button>
+								</span>
+							</h3>
+						</div>
+						<div class="panel-body" id="videoremote"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<hr>
+	<div class="footer">
+		<p>Janus WebRTC Server &copy; <a href="http://www.meetecho.com">Meetecho</a> 2014-2020</p>
+	</div>
+</div>
+
+</body>
+</html>
